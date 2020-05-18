@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css"   href="css/style.css">
+</head>
+<body>
+    <h1>Coronavírus</h1>
+    <p>Mapeamento de casos confimados por coronavírus no Brasil</p>
+    <h3>Preencha o formulário para ver mais informações sobre sua cidade</h3>
+                    
+                    <form   action="/search" method="get">
+                        <fieldset class="container-sm">
+                            <legend class="legend-border">Preencha aqui seus dados</legend>
+                        <div class="row">
+                        <div class="col-6">
+                            <label>Nome
+                            <input type="text" name="nome" id="nome" placeholder="Seu Nome"> </label>
+                            </div>
+                            <div class="col-6">
+                            <label>Sobrenome
+                            <input type="text" name="sobrenome" id="sobrenome" placeholder="Seu Sobrenome" > </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                            <label>CPF
+                            <input type="text" name="cpf" id="cpf" placeholder="000.000.000-00" > </label>
+                            </div>
+                            <div class="col-6">
+                            <label>CEP
+                            <input type="text" name="cep" id="cep" placeholder="00000-000" > </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                            <label>Telefone
+                            <input type="text" name="tel" id="tel" placeholder="(00) 0000-0000"> </label>
+                            </div>
+                            <div class="col-6">
+                                <label>Estado
+                                <input type="text" name="query" id="estado" placeholder="Seu Estado"> </label>
+                                </div>
+
+                        </div>
+
+
+                        <button class ='btn btn-primary' type="submit" value="Search" />Search</button>
+                   </form>
+                   
+                </fieldset>
+               
+                <fieldset class ="container-sm">
+                    <legend class="legend-border"> <b > Casos acumulados de COVID-19 por data</b></legend>
+
+                <img src="css/mapa.png">
+
+                <button class ='btn btn-primary' onclick="myFunction()" type="submit" value="Search" />Search</button>
+                </fieldset>
+               
+           
+                    <script>
+                    function myFunction() {
+                       capturando = document.getElementById("estado").value ;
+                       document.getElementById("input").innerHTML =capturando
+}
+                    </script>
+                    <fieldset class ="container-sm">
+                        <legend class="legend-border"> <b >Registro de casos suspeitos de Covid-19</b></legend>
+                        <h3 id="input"></h3>
+                    </fieldset>
+                  
+
+                             
+                    <%
+                    if(results){
+                        if(list.length > 0){
+                %>
+                
+                    
+                    <fieldset class="container-sm">
+                    <legend class="legend-border"> <b >Resultados da pesquisa por <%= search %>:</b></legend>
+               
+                  
+                        <% list.forEach(function(item){ %>
+                            <table class="table table-striped table-bordered table-condensed table-hover" color ="white">
+                             <tr class ="info">
+                                    <td>Data</td>
+                                    <td><%= item.data%></td>
+                                </tr> 
+                                <tr>
+                                    <td>Regiao</td>
+                                    <td><%= item.regiao%></td>
+                                </tr>  
+                                <tr>
+                                    <td>estado</td>
+                                    <td><%= item.estado%></td>
+                                </tr> 
+                                <tr>
+                                    <td>Municipio</td>
+                                    <td><%= item.municipio%></td>
+                                </tr> 
+                                <tr>
+                                    <td>casosAcumulados</td>
+                                    <td><%= item.casosAcumulado%></td>
+                                </tr> 
+                                <tr>
+                                    <td>ObitosAcumulados</td>
+                                    <td><%= item.obitosAcumulado%></td>
+                                </tr> 
+                                  
+                                </tbody>
+                               </table>
+                        </li>
+                        <% }); %>
+                    
+                    <% } else{ %>
+                        <b class="container-sm">Nenhum resultado encontrado para <%= search %>!</b>
+                    <% 
+                        }
+                    }
+                    %>
+               
+
+                    </fieldset>
+                    </div>
+                    <fieldset class ="container-sm">
+                    <legend class="legend-border"> <b > Casos de COVID-19 por UF de notificação </legend>
+                    <img src="css/Mapa2.png">
+                    </fieldset>
+
+                    <fieldset class ="container-sm">
+                        <legend class="legend-border"> <b >Óbitos acumulados de COVID-19 por data de notificação</legend>
+                        <img src="css/obito.png">
+                        </fieldset>
+                        <h2  align="center">Obrigado por colaborar!</h2>
+                      
+                </div>
+                
+               
+                </div>
+
+                </div>
+            </div>
+        </div>
+        
+       
+</body>
+</html>
